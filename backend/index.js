@@ -26,6 +26,12 @@ const verdict=(bmi)=>{
 app.get('/calculate', (req, res) => {
     const {weight,height}=req.query;
     // console.log(weight,height,req.query);
+    if(height==0 || weight==0){
+        return res.json({
+            bmi:"",
+            text:"Enter valid parameter"
+        })
+    }
     const bmi=calculate(weight,height);
     const text=verdict(bmi);
     res.json({
